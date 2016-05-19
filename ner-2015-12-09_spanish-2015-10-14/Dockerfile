@@ -8,18 +8,18 @@ RUN echo "deb http://ftp.de.debian.org/debian jessie-backports main" >> /etc/apt
 	wget
 
 
-ENV NER_VERSION 2015-12-09
-ENV SPANISH_VERSION 2015-10-14
+ENV NER_VERSION_DATE 2015-12-09
+ENV SPANISH_VERSION_DATE 2015-10-14
 
 
 RUN mkdir /ner && \
   cd /ner && \
-  export NER_URL="http://nlp.stanford.edu/software/stanford-ner-${NER_VERSION}.zip" && \
-  export SPA_URL="http://nlp.stanford.edu/software/stanford-spanish-corenlp-${SPANISH_VERSION}-models.jar" && \
+  export NER_URL="http://nlp.stanford.edu/software/stanford-ner-${NER_VERSION_DATE}.zip" && \
+  export SPA_URL="http://nlp.stanford.edu/software/stanford-spanish-corenlp-${SPANISH_VERSION_DATE}-models.jar" && \
   wget -O ner.zip ${NER_URL} && \
   unzip ner.zip && \
-  mv stanford-ner-${NER_VERSION}/* . && \
-  rm -fr stanford-ner-${NER_VERSION}/ && \
+  mv stanford-ner-${NER_VERSION_DATE}/* . && \
+  rm -fr stanford-ner-${NER_VERSION_DATE}/ && \
   rm ner.zip && \
   wget -O spa.zip ${SPA_URL} && \
   unzip spa.zip -d stanford-spanish && \
@@ -31,3 +31,6 @@ RUN pip install nltk
 
 ENV CLASSPATH /ner
 ENV STANFORD_MODELS /ner/classifiers
+ENV NER_VERSION_NUMBER 3.6.0
+
+RUN mv /ner/stanford-ner-${NER_VERSION_NUMBER}.jar /ner/stanford-ner.jar
