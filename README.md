@@ -5,7 +5,7 @@ Docker image based on `python:3.5` with JDK 8 and nltk installed.
 NER gets installed `/ner`. The NER `.jar` get renamed to `stanford-ner.jar` to comply with how `nltk` searches for this file.
 
 #### Enviroment Variables
-This file exposes/sets the following enviroment variables.
+This image exposes/sets the following enviroment variables.
 
 ```
 ENV NER_VERSION_DATE 2015-12-09
